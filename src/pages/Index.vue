@@ -9,10 +9,11 @@
       <q-separator />
 
       <q-card-actions vertical>
-        <q-btn flat @click="randomFrase()">+1</q-btn>
+        <q-btn flat @click="randomFrase()"><b>Próximo</b></q-btn>
         
       </q-card-actions>
     </q-card>
+
   </q-page>
 </template>
 
@@ -20,6 +21,7 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
+  
   name: "PageIndex",
   data() {
     return {

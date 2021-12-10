@@ -10,7 +10,9 @@
             <img src="../assets/cerveja.png">
           </q-avatar>
           Eu Nunca!
+          
         </q-toolbar-title>
+         <q-select outlined v-model="model" :options="options" label="Linguagem" />
       </q-toolbar>
 
      
@@ -21,7 +23,7 @@
       <q-card dark bordered class="bg-grey-9 my-card">
       <q-card-section>
         <div class="text-h6">Eu nunca Versão 2.0</div>
-        <div class="text-subtitle2">CWB GAME STUDIO</div>
+        <div class="text-subtitle2">CWB GAME STUDIO<br>Última atualização da base de dados das frases: 10/12/2021</div>
       </q-card-section>
 
       <q-separator dark inset />
@@ -30,6 +32,8 @@
        redes sociais
       </q-card-section>
     </q-card>
+
+    
     </q-drawer>
 
     <q-page-container>
@@ -44,6 +48,7 @@ import { ref } from 'vue'
 
 export default {
   setup () {
+   
     const leftDrawerOpen = ref(false)
 
     return {
@@ -52,6 +57,14 @@ export default {
         leftDrawerOpen.value = !leftDrawerOpen.value
       }
     }
-  }
+  },
+   data() {
+      return {
+         
+      options: [
+        'pt_BR', 'en_Us'
+      ]
+      }
+    },
 }
 </script>
