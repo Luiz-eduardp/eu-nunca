@@ -24,7 +24,7 @@ export default defineComponent({
   data() {
     return {
       perguntas: [],
-      selectedFrase: '',
+      selectedFrase: 'Clique para gerar uma frase',
     }
   },
   created() {
