@@ -60,7 +60,7 @@ export default {
   },
    data() {
       return {
-         
+         model:'',
       options: [
         'pt_BR', 'en_Us'
       ]
