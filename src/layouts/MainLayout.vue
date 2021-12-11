@@ -14,7 +14,11 @@
         </q-toolbar-title>
          <q-select outlined v-model="model" :options="options" label="Linguagem" />
       </q-toolbar>
-
+ <q-tabs align="left">
+        <q-route-tab to="/" label="Início" />
+        <q-route-tab to="/tags"  label="Modos de Jogo" />
+        <q-route-tab to="/page3" label="Sugestões" />
+      </q-tabs>
      
     </q-header>
 
@@ -23,7 +27,7 @@
       <q-card dark bordered class="bg-grey-9 my-card">
       <q-card-section>
         <div class="text-h6">Eu nunca Versão 2.0</div>
-        <div class="text-subtitle2">CWB GAME STUDIO<br>Última atualização da base de dados das frases: 10/12/2021</div>
+        <div class="text-subtitle2">CWB GAME STUDIO<br>Última atualização da base de dados das frases: {{attDate}}</div>
       </q-card-section>
 
       <q-separator dark inset />
@@ -58,8 +62,16 @@ export default {
       }
     }
   },
+   created() {
+ 
+  fetch("https://api.npoint.io/841d5e98dcf7cb9d960b/0")
+    .then(response => response.json())
+    .then(data => (this.attDate = data));
+    
+},
    data() {
       return {
+        attDate:'',
          model:'',
       options: [
         'pt_BR', 'en_Us'
