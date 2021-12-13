@@ -33,7 +33,20 @@
       <q-separator dark inset />
 
       <q-card-section>
-       redes sociais
+       redes sociais: <br>
+       <div class="row">
+
+
+   
+   <q-btn type="a" href="https://instagram.com/cwbgamestudio" label="Instagram"></q-btn>
+  
+   <q-btn type="a" href="https://instagram.com/cwbgamestudio" label="Facebook"></q-btn>
+     
+   <q-btn type="a" href="https://instagram.com/cwbgamestudio" label="Website"></q-btn>
+
+
+
+       </div>
       </q-card-section>
     </q-card>
 

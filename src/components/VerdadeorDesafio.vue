@@ -1,6 +1,9 @@
 <template>
 
         <q-card class="my-card" style="background: rgb(88 32 149); color: white; width:80%">
+             <q-input filled v-model="jogadores" label="Jogadores" />
+              <q-btn flat @click=" randomUser()"><b>Começar</b></q-btn>
+             <q-card-section> Vez de {{jogador}}</q-card-section>
           <q-card-section v-show="timerEnabled">
            Restam  {{ timerCount }} segundos
           </q-card-section>
@@ -35,6 +38,8 @@ export default {
   },
   data() {
     return {
+      jogadores:['luiz', 'eduardo'],
+      jogador:'',
       timerCount: 10,
       timerEnabled: false,
        perguntas: [],
@@ -61,7 +66,7 @@ export default {
                     }
 
                 },
-                immediate: true // This ensures the watcher is triggered upon creation
+                immediate: true 
             }
 
         },
@@ -71,8 +76,9 @@ export default {
     this.selectedFrase = this.perguntas[idx]
     this.timerEnabled = true 
     setTimeout(() => {
-          this.timerEnabled = false,quasar
-           this.timerCount = 10 
+          this.timerEnabled = false,
+           this.timerCount = 10 ,
+            randomUser()
     }, 10000);
   },
    randomFrase2() {
@@ -81,10 +87,15 @@ export default {
     this.timerEnabled = true 
     setTimeout(() => {
           this.timerEnabled = false,
-           this.timerCount = 10 
+           this.timerCount = 10 ,
+           randomUser()
     }, 10000);
   },
-    
+    randomUser(){
+
+       const ixcdx = Math.floor(Math.random() * this.jogadores.length);
+    this.jogador = this.jogadores[ixcdx]
+    }
 
   },
 }
