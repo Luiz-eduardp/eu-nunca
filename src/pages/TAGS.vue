@@ -1,54 +1,61 @@
 <template>
-<div class="q-pa-md">
+  <div class="q-pa-md">
+ 
 
-    <div class="row ro">
-      <div class="col"><q-btn style="background: rgb(88 32 149); color: white; width:80%" @click="gamemode = 'Eununca'">Eu nunca</q-btn></div>
-      <div class="col"><q-btn style="background: rgb(88 32 149); color: white; width:80%" @click="gamemode = 'VerdadeorDesafio'">Verdade ou Desafio</q-btn></div>
-      <div class="col"><q-btn style="background: rgb(88 32 149); color: white; width:80%" @click="gamemode = 'MaisProvavel'">Quem é mais provável</q-btn></div>
-  
-    </div>
-
-   
-
+    <q-select
+    color="purple" outlined label-color="purple"
+      label="Modos de Jogo"
+      transition-show="jump-up "
+      transition-hide="jump-up"
+      filled
+      v-model="gamemode"
+      :options="options"
+      style="width: 250px"
+        emit-value
+         map-options
+    />
   </div>
-  <q-page class="flex flex-center">
-
-<component v-bind:is="gamemode"></component>
-
-  </q-page>
+  <q-page-container style="padding-top: 50px !important">
+    <component v-bind:is="gamemode"></component>
+  </q-page-container>
 </template>
 
 <script>
 import { defineComponent } from "vue";
-import Eununca from '../components/Eununca.vue'
-import VerdadeorDesafio from '../components/VerdadeorDesafio.vue'
-import MaisProvavel from '../components/MaisProvavel.vue'
+import { ref } from "vue";
+import Eununca from "../components/Eununca.vue";
+import VerdadeorDesafio from "../components/VerdadeorDesafio.vue";
+import MaisProvavel from "../components/MaisProvavel.vue";
 export default defineComponent({
-  
+  setup() {
+    return {
+      model: ref(null),
+      options: [
+        {
+          label: "Eu Nunca",
+          value: "Eununca",
+        },
+         {
+          label: "Verdade ou Desafio",
+          value: "VerdadeorDesafio",
+        },
+         {
+          label: "Quem é mais provável?",
+          value: "MaisProvavel",
+        },
+      ],
+    };
+  },
   name: "Tags",
   components: {
-    Eununca,VerdadeorDesafio,MaisProvavel
+    Eununca,
+    VerdadeorDesafio,
+    MaisProvavel,
   },
   data() {
     return {
-      gamemode: 'Eununca',
-    
-    }
+      gamemode: "Eununca",
+    };
   },
-
-
-
 });
 </script>
-
-<style>
- 
-@media only screen and (max-width:70em) { 
-	.ro{
-    flex-direction: column !important;
-    padding: 0 80px;
-    width: 100% !important;
-  }
-}
-
-</style>

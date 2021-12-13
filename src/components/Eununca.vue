@@ -1,6 +1,6 @@
 <template>
-  <q-card class="my-card" style="background: rgb(88 32 149); color: white; width:80%">
-      <q-card-section>
+  <q-card class="my-card" style="background: rgb(88 32 149); color: white;">
+      <q-card-section style="text-align:center">
         <div class="text-h6">{{selectedFrase}}</div>
        
       </q-card-section>
