@@ -21,7 +21,7 @@ export default {
     return {}
   },
   created() {
-    fetch("https://api.npoint.io/972d58dae1664aafb96a/")
+    fetch("https://api.npoint.io/70e9a02571f303033fc1/")
     .then(response => response.json())
     .then(data => (this.perguntas = data));
   },

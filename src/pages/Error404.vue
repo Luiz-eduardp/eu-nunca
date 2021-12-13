@@ -1,5 +1,5 @@
 <template>
-  <div class="fullscreen bg-blue text-white text-center q-pa-md flex flex-center">
+  <div class="fullscreen text-white text-center q-pa-md flex flex-center" style="background: rgb(88 32 149);">
     <div>
       <div style="font-size: 30vh">
         404
@@ -15,7 +15,7 @@
         text-color="blue"
         unelevated
         to="/"
-        label="Go Home"
+        label="Voltar"
         no-caps
       />
     </div>

@@ -1,7 +1,10 @@
 <template>
 
         <q-card class="my-card" style="background: rgb(88 32 149); color: white; width:80%">
-      <q-card-section>
+          <q-card-section v-show="timerEnabled">
+           Restam  {{ timerCount }} segundos
+          </q-card-section>
+      <q-card-section v-show="timerEnabled">
         <div class="text-h6">{{selectedFrase}}</div>
        
       </q-card-section>
@@ -32,20 +35,57 @@ export default {
   },
   data() {
     return {
+      timerCount: 10,
+      timerEnabled: false,
        perguntas: [],
         perguntas2: [],
          selectedFrase: 'Verdade ou Desafio',
     }},
+  watch: {
 
+            timerEnabled(value) {
+                if (value) {
+                    setTimeout(() => {
+                        this.timerCount--;
+                    }, 1000);
+                }
+            },
+
+            timerCount: {
+                handler(value) {
+
+                    if (value > 0 && this.timerEnabled) {
+                        setTimeout(() => {
+                            this.timerCount--;
+                        }, 1000);
+                    }
+
+                },
+                immediate: true // This ensures the watcher is triggered upon creation
+            }
+
+        },
     methods: {
   randomFrase() {
       const idx = Math.floor(Math.random() * this.perguntas.length);
     this.selectedFrase = this.perguntas[idx]
+    this.timerEnabled = true 
+    setTimeout(() => {
+          this.timerEnabled = false,quasar
+           this.timerCount = 10 
+    }, 10000);
   },
    randomFrase2() {
       const idx = Math.floor(Math.random() * this.perguntas.length);
-    this.selectedFrase = this.perguntas[idx]
-  }
+    this.selectedFrase = this.perguntas2[idx]
+    this.timerEnabled = true 
+    setTimeout(() => {
+          this.timerEnabled = false,
+           this.timerCount = 10 
+    }, 10000);
+  },
+    
+
   },
 }
 </script>
