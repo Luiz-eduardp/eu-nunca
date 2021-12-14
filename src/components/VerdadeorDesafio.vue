@@ -1,5 +1,4 @@
 <template>
-  
   <q-card>
     <q-btn flat @click="verPlayers()"> Jogadores </q-btn>
     <p
@@ -24,7 +23,10 @@
       ><b>+1 jogador</b></q-btn
     >
   </q-card>
-  <q-card class="my-card" style="background: rgb(88 32 149); color: white; margin-top:30px">
+  <q-card
+    class="my-card"
+    style="background: rgb(88 32 149); color: white; margin-top: 30px"
+  >
     <q-card-section v-show="timerEnabled">
       Restam {{ timerCount }} segundos
     </q-card-section>
@@ -39,8 +41,13 @@
       <q-btn flat @click="randomFrase2()"><b>Desafio</b></q-btn>
     </q-card-actions>
   </q-card>
-  <q-banner dense inline-actions class="text-white bg-purple" style="margin-top:30px">
-    Vez de {{ vezde }} perguntar para {{perguntapara}}
+  <q-banner
+    dense
+    inline-actions
+    class="text-white bg-purple"
+    style="margin-top: 30px"
+  >
+    Vez de {{ vezde }} perguntar para {{ perguntapara }}
     <template v-slot:action>
       <q-btn flat color="white" label="Nova Rodada" @click="randomPlayer()" />
     </template>
@@ -48,111 +55,110 @@
 </template>
 
 <script>
-import { useQuasar } from 'quasar'
+import { useQuasar } from "quasar";
 
 export default {
-  name:  'Eununca',
-  setup () {
-      const $q = useQuasar()
+  name: "Eununca",
+  setup() {
+    const $q = useQuasar();
 
     return {
-      showNotif () {
+      showNotif() {
         $q.notify({
-          message: 'Jim pinged you.',
-          caption: '5 minutes ago',
-          color: 'secondary'
-        })
-      }
-    }
+          message: "Jim pinged you.",
+          caption: "5 minutes ago",
+          color: "secondary",
+        });
+      },
+    };
   },
   created() {
-     fetch("https://api.npoint.io/68f76dab078f7290a0e7")
-    .then(response => response.json())
-    .then(data => (this.perguntas = data));
-     fetch("https://api.npoint.io/4273f9ac25dbd79aee59")
-    .then(response => response.json())
-    .then(data => (this.perguntas2 = data));
-
+    fetch("https://api.npoint.io/68f76dab078f7290a0e7")
+      .then((response) => response.json())
+      .then((data) => (this.perguntas = data));
+    fetch("https://api.npoint.io/4273f9ac25dbd79aee59")
+      .then((response) => response.json())
+      .then((data) => (this.perguntas2 = data));
   },
   data() {
     return {
-      jogadorname:'',
-  jogadores:[],
-  podeadd:true,
-  mostrarplayers: false,
-  vezde: '',
-  perguntapara:'',
-          timerCount: 10,
+      jogadorname: "",
+      jogadores: [],
+      podeadd: true,
+      mostrarplayers: false,
+      vezde: "",
+      perguntapara: "",
+      timerCount: 10,
       timerEnabled: false,
-       perguntas: [],
-        perguntas2: [],
-         selectedFrase: 'Verdade ou Desafio',
-    }},
+      perguntas: [],
+      perguntas2: [],
+      selectedFrase: "Verdade ou Desafio",
+    };
+  },
   watch: {
+    timerEnabled(value) {
+      if (value) {
+        setTimeout(() => {
+          this.timerCount--;
+        }, 1000);
+      }
+    },
 
-            timerEnabled(value) {
-                if (value) {
-                    setTimeout(() => {
-                        this.timerCount--;
-                    }, 1000);
-                }
-            },
-
-            timerCount: {
-                handler(value) {
-
-                    if (value > 0 && this.timerEnabled) {
-                        setTimeout(() => {
-                            this.timerCount--;
-                        }, 1000);
-                    }
-
-                },
-                immediate: true
-            }
-
-        },
-    methods: {
-      verPlayers(){
-this.mostrarplayers = !this.mostrarplayers
+    timerCount: {
+      handler(value) {
+        if (value > 0 && this.timerEnabled) {
+          setTimeout(() => {
+            this.timerCount--;
+          }, 1000);
+        }
       },
-
-addjogador: function() {
-               if (this.jogadorname != '') {
-                  this.jogadores.push(
-                   this.jogadorname,
-
-                ); this.jogadorname = ''
-               }
-               else (
-            this.jogadorname = 'Escreva um nome aqui antes'
-               )
-            },
-
-
-  randomFrase() {
-      const idx = Math.floor(Math.random() * this.perguntas.length);
-    this.selectedFrase = this.perguntas[idx]
-    this.timerEnabled = true
-    setTimeout(() => {
-          this.timerEnabled = false,
-           this.timerCount = 10 }, 10000);
+      immediate: true,
+    },
   },
-   randomFrase2() {
+  methods: {
+    verPlayers() {
+      this.mostrarplayers = !this.mostrarplayers;
+    },
+
+    addjogador: function () {
+      if (this.jogadorname != "") {
+        this.jogadores.push(this.jogadorname);
+        this.jogadorname = "";
+      } else this.jogadorname = "Escreva um nome aqui antes";
+    },
+
+    randomFrase() {
       const idx = Math.floor(Math.random() * this.perguntas.length);
-    this.selectedFrase = this.perguntas2[idx],
-    this.timerEnabled = true
-    setTimeout(() => {
-          this.timerEnabled = false,
-           this.timerCount = 10
-}, 10000);
-  },
- randomPlayer() {
+      this.selectedFrase = this.perguntas[idx];
+      this.timerEnabled = true;
+      setTimeout(() => {
+        (this.timerEnabled = false), (this.timerCount = 10);
+      }, 10000);
+    },
+    randomFrase2() {
+      const idx = Math.floor(Math.random() * this.perguntas.length);
+      (this.selectedFrase = this.perguntas2[idx]), (this.timerEnabled = true);
+      setTimeout(() => {
+        (this.timerEnabled = false), (this.timerCount = 10);
+      }, 10000);
+    },
+    randomPlayer() {
       const idx = Math.floor(Math.random() * this.jogadores.length);
-    this.vezde = this.jogadores[idx]
-    this.perguntapara = this.jogadores[Math.floor(Math.random() * this.jogadores.length)]
-     }
+       const idx2 = Math.floor(Math.random() * this.jogadores.length);
+     
+        if (idx != idx2) {
+                this.vezde = this.jogadores[idx];
+      this.perguntapara =
+        this.jogadores[idx2];
+        } else {
+      randomPlayer2();
+        }
+    },
+    randomPlayer2() {
+      const ixdx = Math.floor(Math.random() * this.jogadores.length);
 
+      this.perguntapara = this.jogadores[ixdx];
+    },
   },
-}
+};
 </script>
