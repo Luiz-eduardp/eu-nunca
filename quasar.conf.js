@@ -95,9 +95,10 @@ module.exports = configure(function(ctx) {
             // directives: [],
 
             // Quasar plugins
-            plugins: [],
+            plugins: ['Notify'],
             config: {
-                dark: 'auto' // or Boolean true/false
+                dark: 'auto', // or Boolean true/false
+
             }
         },
 
@@ -142,12 +143,12 @@ module.exports = configure(function(ctx) {
             },
 
             manifest: {
-                name: `Eu nunca `,
-                short_name: `Eu nunca `,
-                description: `Eu nunca, feito para você se divertir`,
+                name: `Beer Games `,
+                short_name: `Beer Games `,
+                description: `Feito para você se divertir enquanto desfruta de produtos adultos`,
                 display: 'standalone',
                 orientation: 'portrait',
-                background_color: '#ffffff',
+                background_color: 'black',
                 theme_color: 'rgb(88 32 149)',
                 icons: [{
                         src: 'icons/cerveja.png',

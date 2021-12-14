@@ -9,7 +9,7 @@
           <q-avatar>
             <img src="../assets/cerveja.png">
           </q-avatar>
-          Eu Nunca!
+          Beer Games
           
         </q-toolbar-title>
          <q-select outlined v-model="model" :options="options" label="Linguagem" />
@@ -26,7 +26,7 @@
       <!-- drawer content -->
       <q-card dark bordered class="bg-grey-9 my-card">
       <q-card-section>
-        <div class="text-h6">Eu nunca Versão 2.0</div>
+        <div class="text-h6">Beer Games Versão 0.9</div>
         <div class="text-subtitle2">CWB GAME STUDIO<br>Última atualização da base de dados das frases: {{attDate}}</div>
       </q-card-section>
 
@@ -42,7 +42,7 @@
   
 
      
-   <q-btn type="a" href="cwbgamestudio.com" label="Website"></q-btn>
+   <q-btn type="a" href="https://cwbgamestudio.com" label="Website"></q-btn>
 
 
 

@@ -1,12 +1,34 @@
 <template>
-  <q-card
-    class="my-card"
-    style="background: rgb(88 32 149); color: white; "
-  >
+  
+  <q-card>
+    <q-btn flat @click="verPlayers()"> Jogadores </q-btn>
+    <p
+      style="padding-left: 20px"
+      v-show="mostrarplayers"
+      v-for="(jogador, i) in jogadores"
+      :key="i"
+    >
+      <span>{{ jogadores[i] }}</span>
+    </p>
+    <q-input
+      v-show="mostrarplayers"
+      standout="bg-purple text-white"
+      v-model="jogadorname"
+      label="Adicionar novos jogadores"
+    />
+    <q-btn
+      flat
+      v-show="mostrarplayers"
+      @click="addjogador()"
+      @change="this.podeadd = true"
+      ><b>+1 jogador</b></q-btn
+    >
+  </q-card>
+  <q-card class="my-card" style="background: rgb(88 32 149); color: white; margin-top:30px">
     <q-card-section v-show="timerEnabled">
       Restam {{ timerCount }} segundos
     </q-card-section>
-    <q-card-section v-show="timerEnabled" style="text-align:center">
+    <q-card-section v-show="timerEnabled" style="text-align: center">
       <div class="text-h6">{{ selectedFrase }}</div>
     </q-card-section>
 
@@ -17,13 +39,31 @@
       <q-btn flat @click="randomFrase2()"><b>Desafio</b></q-btn>
     </q-card-actions>
   </q-card>
+  <q-banner dense inline-actions class="text-white bg-purple" style="margin-top:30px">
+    Vez de {{ vezde }} perguntar para {{perguntapara}}
+    <template v-slot:action>
+      <q-btn flat color="white" label="Nova Rodada" @click="randomPlayer()" />
+    </template>
+  </q-banner>
 </template>
 
 <script>
+import { useQuasar } from 'quasar'
+
 export default {
   name:  'Eununca',
   setup () {
-    return {}
+      const $q = useQuasar()
+
+    return {
+      showNotif () {
+        $q.notify({
+          message: 'Jim pinged you.',
+          caption: '5 minutes ago',
+          color: 'secondary'
+        })
+      }
+    }
   },
   created() {
      fetch("https://api.npoint.io/68f76dab078f7290a0e7")
@@ -36,6 +76,12 @@ export default {
   },
   data() {
     return {
+      jogadorname:'',
+  jogadores:[],
+  podeadd:true,
+  mostrarplayers: false,
+  vezde: '',
+  perguntapara:'',
           timerCount: 10,
       timerEnabled: false,
        perguntas: [],
@@ -67,6 +113,23 @@ export default {
 
         },
     methods: {
+      verPlayers(){
+this.mostrarplayers = !this.mostrarplayers
+      },
+
+addjogador: function() {
+               if (this.jogadorname != '') {
+                  this.jogadores.push(
+                   this.jogadorname,
+
+                ); this.jogadorname = ''
+               }
+               else (
+            this.jogadorname = 'Escreva um nome aqui antes'
+               )
+            },
+
+
   randomFrase() {
       const idx = Math.floor(Math.random() * this.perguntas.length);
     this.selectedFrase = this.perguntas[idx]
@@ -84,6 +147,11 @@ export default {
            this.timerCount = 10
 }, 10000);
   },
+ randomPlayer() {
+      const idx = Math.floor(Math.random() * this.jogadores.length);
+    this.vezde = this.jogadores[idx]
+    this.perguntapara = this.jogadores[Math.floor(Math.random() * this.jogadores.length)]
+     }
 
   },
 }
