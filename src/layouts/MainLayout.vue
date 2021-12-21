@@ -17,7 +17,7 @@
  <q-tabs align="left">
         <q-route-tab to="/" label="Início" />
         <q-route-tab to="/tags"  label="Modos de Jogo" />
-        <q-route-tab to="/page3" label="Sugestões" />
+        <q-route-tab to="/changelog" label="Changelog" />
       </q-tabs>
      
     </q-header>
@@ -26,7 +26,7 @@
       <!-- drawer content -->
       <q-card dark bordered class="bg-grey-9 my-card">
       <q-card-section>
-        <div class="text-h6">Beer Games Versão 0.9</div>
+        <div class="text-h6">Beer Games Versão 1.0</div>
         <div class="text-subtitle2">CWB GAME STUDIO<br>Última atualização da base de dados das frases: {{attDate}}</div>
       </q-card-section>
 

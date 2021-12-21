@@ -49,6 +49,8 @@ import { ref } from "vue";
 import Eununca from "../components/Eununca.vue";
 import VerdadeorDesafio from "../components/VerdadeorDesafio.vue";
 import MaisProvavel from "../components/MaisProvavel.vue";
+import Oqvcprefere from "../components/Oqvcprefere.vue";
+import funfacts from "../components/funfacts.vue";
 export default defineComponent({
   setup() {
     return {
@@ -66,6 +68,14 @@ export default defineComponent({
           label: "Quem é mais provável?",
           value: "MaisProvavel",
         },
+        {
+          label: "O que você prefere?",
+          value: "Oqvcprefere"
+        },
+         {
+          label: "Fatos engraçados",
+          value: "funfacts"
+        }
       ],
     };
   },
@@ -74,6 +84,8 @@ export default defineComponent({
     Eununca,
     VerdadeorDesafio,
     MaisProvavel,
+    Oqvcprefere,
+    funfacts
   },
   data() {
     return {

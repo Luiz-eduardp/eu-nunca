@@ -1,6 +1,10 @@
 <template>
   <div class="q-pa-md">
 
+    <q-banner dense inline-actions class="text-white bg-purple" style="margin-bottom:50px;">
+      Novo modo de jogo adicionado, experimente: <b> Fatos Engraçados</b>
+      
+    </q-banner>
  <q-carousel
         v-model="slide"
         transition-prev="jump-right"
@@ -40,7 +44,8 @@ export default {
   setup () {
     return {
       slide: ref('style'),
-      slide1: 'Venha conferir os novos modos de jogo!',
+      
+      slide1: 'Mantenha todas suas reuniões com amigos animadas!',
        slide2: 'Todo o banco de dados é atualizado periodicamente!'
     }
   }

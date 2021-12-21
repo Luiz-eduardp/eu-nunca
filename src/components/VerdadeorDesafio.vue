@@ -1,5 +1,6 @@
 <template>
   <q-card>
+   
     <q-btn flat @click="verPlayers()"> Jogadores </q-btn>
     <p
       style="padding-left: 20px"
@@ -36,10 +37,6 @@
 
     <q-separator />
 
-    <q-card-actions vertical v-show="!timerEnabled">
-      <q-btn flat @click="randomFrase()"><b>Verdade</b></q-btn>
-      <q-btn flat @click="randomFrase2()"><b>Desafio</b></q-btn>
-    </q-card-actions>
   </q-card>
   <q-banner
     dense
@@ -49,7 +46,12 @@
   >
     Vez de {{ vezde }} perguntar para {{ perguntapara }}
     <template v-slot:action>
-      <q-btn flat color="white" label="Nova Rodada" @click="randomPlayer()" />
+      <q-btn v-show="!timerEnabled" flat color="white" label="Nova Rodada" @click="randomPlayer()" />
+      
+    <q-card-actions vertical v-show="!timerEnabled">
+      <q-btn flat @click="randomFrase()"><b>Verdade</b></q-btn>
+      <q-btn flat @click="randomFrase2()"><b>Desafio</b></q-btn>
+    </q-card-actions>
     </template>
   </q-banner>
 </template>
@@ -86,8 +88,8 @@ export default {
       jogadores: [],
       podeadd: true,
       mostrarplayers: false,
-      vezde: "",
-      perguntapara: "",
+      vezde: "Alguém",
+      perguntapara: "Alguém",
       timerCount: 10,
       timerEnabled: false,
       perguntas: [],
